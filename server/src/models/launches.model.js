@@ -1,6 +1,6 @@
-export const launches = new Map();
+const launches = new Map();
 
-const launch = {
+const testLaunch = {
   flightNumber: 100,
   mission: "Kepler Exploration X",
   rocket: "Explorer IS1",
@@ -11,4 +11,39 @@ const launch = {
   success: true,
 };
 
-launches.set(launch.flightNumber, launch);
+let latestFlightNumber = 100;
+
+function setLaunch(number, launch) {
+  launches.set(number, launch);
+  return launch;
+}
+
+setLaunch(testLaunch.flightNumber, testLaunch);
+
+export function getAllLaunches() {
+  return Array.from(launches.values());
+}
+
+export function addNewLaunch(launch) {
+  latestFlightNumber++;
+  return setLaunch(
+    latestFlightNumber,
+    Object.assign(launch, {
+      flightNumber: latestFlightNumber,
+      customers: ["ZTM", "NASA"],
+      upcoming: true,
+      success: true,
+    })
+  );
+}
+
+export function abortLaunch(id) {
+  const aborted = launches.get(id);
+  aborted.upcoming = false;
+  aborted.success = false;
+  return aborted;
+}
+
+export function scheduledLaunch(id) {
+  return launches.has(id);
+}

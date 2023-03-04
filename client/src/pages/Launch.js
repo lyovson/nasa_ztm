@@ -49,7 +49,7 @@ const Launch = (props) => {
           defaultValue={today}
         />
         <label htmlFor="mission-name">Mission Name</label>
-        <input type="text" id="mission-name" name="mission-name" />
+        <input type="text" id="mission-name" name="mission-name" required />
         <label htmlFor="rocket-name">Rocket Type</label>
         <input
           type="text"

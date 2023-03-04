@@ -5,7 +5,7 @@ import { parse } from "csv-parse";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
-export const habitablePlanets = [];
+const habitablePlanets = [];
 
 function isHabitablePlanet(planet) {
   return (
@@ -39,3 +39,9 @@ export function loadPlanetsData() {
       });
   });
 }
+
+export function getAllPlanets() {
+  return habitablePlanets;
+}
+
+export function abortLaunch(id) {}
