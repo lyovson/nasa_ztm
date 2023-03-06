@@ -16,7 +16,7 @@ import { launchesRouter } from "./routes/launches.router.js";
 
 dotenv.config();
 
-const app = express();
+export const app = express();
 
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
@@ -39,5 +39,3 @@ app.use("/launches", launchesRouter);
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
-
-export default app;

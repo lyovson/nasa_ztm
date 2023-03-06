@@ -18,17 +18,17 @@ export function httpAddNewLaunch(req, res) {
     !launch.rocket ||
     !launch.target
   ) {
-    return res.status(400).json({ error: "wrong data" });
+    return res.status(400).json({ error: "Missing required launch property" });
   }
 
   launch.launchDate = new Date(launch.launchDate);
 
   if (isNaN(launch.launchDate)) {
-    return res.status(400).json({ error: "wrong date" });
+    return res.status(400).json({ error: "Invalid launch date" });
   }
 
   const addedLaunch = addNewLaunch(launch);
-  return res.status(200).json(addedLaunch);
+  return res.status(201).json(addedLaunch);
 }
 
 export function httpAbortLaunch(req, res) {
