@@ -1,4 +1,4 @@
-const launches = new Map();
+import { launches } from "../../data/launches.js";
 
 const testLaunch = {
   flightNumber: 100,
