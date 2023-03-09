@@ -11,8 +11,8 @@ import dotenv from "dotenv";
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 //importing routers
-import { planetsRouter } from "./routes/planets.router.js";
-import { launchesRouter } from "./routes/launches.router.js";
+import { planetsRouter } from "./planets/planets.router.js";
+import { launchesRouter } from "./launches/launches.router.js";
 
 dotenv.config();
 
