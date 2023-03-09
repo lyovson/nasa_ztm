@@ -3,7 +3,7 @@ import {
   httpGetAllLaunches,
   httpAddNewLaunch,
   httpAbortLaunch,
-} from "../controllers/launches.controller.js";
+} from "./launches.controller.js";
 
 export const launchesRouter = express.Router();
 

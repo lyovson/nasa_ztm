@@ -15,37 +15,8 @@ function isHabitablePlanet(planet) {
     planet["koi_prad"] < 1.6
   );
 }
-export function loadPlanetsData() {
-  return new Promise((resolve, reject) => {
-    fs.createReadStream(path.join(__dirname, "..", "..", "data", "kd.csv"))
-      .pipe(
-        parse({
-          comment: "#",
-          columns: true,
-        })
-      )
-      .on("data", async (data) => {
-        if (isHabitablePlanet(data)) {
-          savePlanet(data);
-        }
-      })
-      .on("error", (err) => {
-        console.log(err);
-        reject(err);
-      })
-      .on("end", async () => {
-        const countPlanetsFound = (await getAllPlanets()).length;
-        console.log(`${countPlanetsFound} habitable planets found!`);
-        resolve();
-      });
-  });
-}
 
-export async function getAllPlanets() {
-  return await planets.find({});
-}
-
-async function savePlanet(planet) {
+async function setPlanet(planet) {
   try {
     await planets.updateOne(
       {
@@ -61,4 +32,31 @@ async function savePlanet(planet) {
   } catch (err) {
     console.error(`Could not save planet ${err}`);
   }
+}
+
+export function loadPlanetsData() {
+  return new Promise((resolve, reject) => {
+    fs.createReadStream(path.join(__dirname, "..", "..", "data", "kd.csv"))
+      .pipe(
+        parse({
+          comment: "#",
+          columns: true,
+        })
+      )
+      .on("data", async (data) => {
+        if (isHabitablePlanet(data)) {
+          setPlanet(data);
+        }
+      })
+      .on("error", (err) => {
+        reject(err);
+      })
+      .on("end", async () => {
+        resolve();
+      });
+  });
+}
+
+export async function getAllPlanets() {
+  return await planets.find({});
 }
