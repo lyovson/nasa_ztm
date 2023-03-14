@@ -8,7 +8,7 @@
     "start": "node src/server.js",
     "cluster": "pm2 start src/server.js -i max",
     "watch": "node --watch src/server.js",
-    "test": "vitest"
+    "test": "vitest --config vite.config.js"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +23,8 @@
     "pm2": "^5.2.2"
   },
   "devDependencies": {
-    "supertest": "^6.3.3",
     "vite": "^4.1.4",
-    "vitest": "^0.29.2"
+    "vitest": "^0.29.2",
+    "supertest": "^6.3.3"
   }
 }
